@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "../../components/ui/button";
 import { Card } from "../../components/ui/card";
 import { Calendar, Users, Home as HomeIcon, PieChart, FileText, UserCircle, Edit3 } from "lucide-react";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 export const Home = (): JSX.Element => {
   const navigate = useNavigate();
   const [showChamaDropdown, setShowChamaDropdown] = useState(false);
+  const [showAgenda, setShowAgenda] = useState(false);
 
   return (
     <div className="bg-white min-h-screen pb-20">
@@ -51,9 +52,11 @@ export const Home = (): JSX.Element => {
           <span className="text-2xl">!</span>
           <p className="text-sm">Reminder, you need to verify your identity in order to cashout</p>
         </div>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        <button onClick={() => navigate("/profile")}> 
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
       </div>
 
       {/* Quick Actions */}
@@ -81,7 +84,7 @@ export const Home = (): JSX.Element => {
             <Calendar className="text-[#24a399] w-6 h-6" />
             <p className="text-sm">You haven't contributed for April</p>
           </div>
-          <Button className="bg-[#24a399] text-white text-sm px-4 py-2 rounded-md">
+          <Button className="bg-[#24a399] text-white text-sm px-4 py-2 rounded-md" onClick={() => navigate("/contribute-method", { state: { fromHome: true } })}> 
             Contribute Now
           </Button>
         </div>
@@ -114,7 +117,7 @@ export const Home = (): JSX.Element => {
               <p className="text-sm text-gray-500">5:00PM · Online</p>
             </div>
           </div>
-          <Button className="w-full bg-[#24a399] text-white py-2 rounded-md">
+          <Button className="w-full bg-[#24a399] text-white py-2 rounded-md" onClick={() => setShowAgenda(true)}>
             View Agenda
           </Button>
         </Card>
@@ -158,6 +161,21 @@ export const Home = (): JSX.Element => {
         </div>
       </div>
 
+      {/* Agenda Modal */}
+      {showAgenda && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl w-full max-w-md mx-4 p-6 relative">
+            <button onClick={() => setShowAgenda(false)} className="absolute top-4 right-4 text-gray-400 text-2xl">×</button>
+            <h2 className="text-xl font-bold mb-4 text-[#24a399]">Meeting Agenda</h2>
+            <ul className="list-disc pl-6 space-y-2">
+              {(["Review Q1 performance", "Discuss investment opportunities", "Q&A session"]).map((item, idx) => (
+                <li key={idx} className="text-[#18181B] text-base">{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+
       {/* Bottom Navigation */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t py-2">
         <div className="flex justify-around items-center">
@@ -169,15 +187,15 @@ export const Home = (): JSX.Element => {
             <Users className="w-6 h-6 text-gray-400" />
             <span className="text-xs text-gray-400">Members</span>
           </button>
-          <button className="flex flex-col items-center">
+          <button onClick={() => navigate("/finances")} className="flex flex-col items-center">
             <PieChart className="w-6 h-6 text-gray-400" />
             <span className="text-xs text-gray-400">Finances</span>
           </button>
-          <button className="flex flex-col items-center">
+          <button onClick={() => navigate("/meetings")} className="flex flex-col items-center">
             <Calendar className="w-6 h-6 text-gray-400" />
             <span className="text-xs text-gray-400">Meetings</span>
           </button>
-          <button className="flex flex-col items-center">
+          <button onClick={() => navigate("/profile")} className="flex flex-col items-center">
             <UserCircle className="w-6 h-6 text-gray-400" />
             <span className="text-xs text-gray-400">Account</span>
           </button>
