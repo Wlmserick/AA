@@ -1,0 +1,20 @@
+{
+  "short_name": "AA App",
+  "name": "AA Mobile App",
+  "icons": [
+    {
+      "src": "/chatgpt-image-apr-26--2025--11-56-07-pm-1.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/chatgpt-image-apr-26--2025--11-56-07-pm-1.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
+}
