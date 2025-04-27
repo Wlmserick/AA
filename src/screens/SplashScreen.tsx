@@ -5,6 +5,7 @@ import "../components/ui/splash.css";
 export const SplashScreen = () => {
   const navigate = useNavigate();
   useEffect(() => {
+    sessionStorage.setItem("hasSeenSplash", "true"); // Set splash as seen
     const timer = setTimeout(() => {
       navigate("/", { replace: true });
     }, 1500);
