@@ -456,23 +456,23 @@ export const Meetings = (): JSX.Element => {
 				{/* Bottom Navigation - mobile only */}
 				<div className="fixed bottom-0 left-0 right-0 bg-white border-t py-2 block md:hidden">
 					<div className="flex justify-around items-center">
-						<button onClick={() => navigate("/home")} className="flex flex-col items-center">
+						<button onClick={() => navigate("/home")} className={`flex flex-col items-center`}>
 							<HomeIcon className="w-6 h-6 text-gray-400" />
 							<span className="text-xs text-gray-400">Home</span>
 						</button>
-						<button onClick={() => navigate("/members")} className="flex flex-col items-center">
+						<button onClick={() => navigate("/members")} className={`flex flex-col items-center`}>
 							<Users className="w-6 h-6 text-gray-400" />
 							<span className="text-xs text-gray-400">Members</span>
 						</button>
-						<button onClick={() => navigate("/finances")} className="flex flex-col items-center">
+						<button onClick={() => navigate("/finances")} className={`flex flex-col items-center`}>
 							<PieChart className="w-6 h-6 text-gray-400" />
 							<span className="text-xs text-gray-400">Finances</span>
 						</button>
-						<button className="flex flex-col items-center">
+						<button onClick={() => navigate("/meetings")} className={`flex flex-col items-center`}>
 							<Calendar className="w-6 h-6 text-[#24a399]" />
 							<span className="text-xs text-[#24a399]">Meetings</span>
 						</button>
-						<button onClick={() => navigate("/profile")} className="flex flex-col items-center">
+						<button onClick={() => navigate("/profile")} className={`flex flex-col items-center`}>
 							<UserCircle className="w-6 h-6 text-gray-400" />
 							<span className="text-xs text-gray-400">Account</span>
 						</button>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card } from "../../components/ui/card";
 import { CheckCircle, UploadCloud, User, LogOut, ShieldCheck, Edit3, Calendar, Users, Home as HomeIcon, PieChart, UserCircle } from "lucide-react";
 
@@ -19,6 +20,7 @@ export const Profile = (): JSX.Element => {
   const [verified, setVerified] = useState(user.verified);
   const [showUpload, setShowUpload] = useState(false);
   const [selectedDoc, setSelectedDoc] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   return (
     <div className="bg-[#F6FAF9] min-h-screen pb-20">
@@ -26,7 +28,7 @@ export const Profile = (): JSX.Element => {
         <img src={user.avatar} alt="Avatar" className="w-24 h-24 rounded-full object-cover border-4 border-[#24a399]" />
         <h2 className="mt-4 text-2xl font-bold text-[#18181B] flex items-center gap-2">
           {user.name}
-          {verified && <ShieldCheck className="w-6 h-6 text-[#24a399]" title="Verified" />}
+          {verified && <ShieldCheck className="w-6 h-6 text-[#24a399]" />}
         </h2>
         <p className="text-[#6B7280]">{user.email}</p>
         <p className="text-[#6B7280]">{user.phone}</p>
@@ -91,23 +93,23 @@ export const Profile = (): JSX.Element => {
       {/* Bottom Navigation - mobile only */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t py-2 block md:hidden">
         <div className="flex justify-around items-center">
-          <button onClick={() => window.location.href = '/home'} className="flex flex-col items-center">
+          <button onClick={() => navigate('/home')} className="flex flex-col items-center">
             <HomeIcon className="w-6 h-6 text-gray-400" />
             <span className="text-xs text-gray-400">Home</span>
           </button>
-          <button onClick={() => window.location.href = '/members'} className="flex flex-col items-center">
+          <button onClick={() => navigate('/members')} className="flex flex-col items-center">
             <Users className="w-6 h-6 text-gray-400" />
             <span className="text-xs text-gray-400">Members</span>
           </button>
-          <button onClick={() => window.location.href = '/finances'} className="flex flex-col items-center">
+          <button onClick={() => navigate('/finances')} className="flex flex-col items-center">
             <PieChart className="w-6 h-6 text-gray-400" />
             <span className="text-xs text-gray-400">Finances</span>
           </button>
-          <button onClick={() => window.location.href = '/meetings'} className="flex flex-col items-center">
+          <button onClick={() => navigate('/meetings')} className="flex flex-col items-center">
             <Calendar className="w-6 h-6 text-gray-400" />
             <span className="text-xs text-gray-400">Meetings</span>
           </button>
-          <button className="flex flex-col items-center">
+          <button onClick={() => navigate('/profile')} className="flex flex-col items-center">
             <UserCircle className="w-6 h-6 text-[#24a399]" />
             <span className="text-xs text-[#24a399]">Account</span>
           </button>
